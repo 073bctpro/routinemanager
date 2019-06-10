@@ -1,0 +1,6 @@
+Django==2.2.2
+mysqlclient==1.4.2.post1
+PyMySQL==0.9.3
+pytz==2019.1
+South==1.0.2
+sqlparse==0.3.0
