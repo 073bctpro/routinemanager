@@ -1,5 +1,5 @@
 from django.db import models
-from datetime import datetime, timedelta
+from datetime import datetime
 
 
 def get_default_my_date():
