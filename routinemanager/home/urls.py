@@ -5,10 +5,12 @@ app_name = 'home'
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-    url(r'^register/$', views.register, name='register'),
-    url(r'^login_user/$', views.login_user, name='login_user'),
-    url(r'^logout_user/$', views.logout_user, name='logout_user'),
-    url(r'^(?P<album_id>[0-9]+)/$', views.detail, name='detail'),
-    url(r'^create_album/$', views.create_routine, name='create_routine'),
-    url(r'^(?P<album_id>[0-9]+)/delete_album/$', views.delete_routine, name='delete_routine'),
+    url(r'^view', views.detail, name='detail'),
+    url(r'^create/$', views.create_routine, name='create_routine'),
+    url(r'^delete/$', views.delete_routine, name='delete_routine'),
+    url(r'^programs/$', views.programs, name='programs'),
+    url(r'^subjects/$', views.subjects, name='subjects'),
+    url(r'^departments/$', views.departments, name='departments'),
+    url(r'^teachers/$', views.teachers, name='teachers'),
+    url(r'^rooms/$', views.rooms, name='rooms'),
 ]

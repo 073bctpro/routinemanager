@@ -8,19 +8,16 @@ from .models import Programs, Rooms, Routine, Subjects, Teachers, Users
 
 
 def create_routine(request):
-    if not request.user.is_authenticated:
-        return render(request, 'home/login.html')
-    else:
-        form = RoutineForm(request.POST or None, request.FILES or None)
-        if form.is_valid():
-            routine = form.save(commit=False)
+    form = RoutineForm(request.POST or None, request.FILES or None)
+    if form.is_valid():
+        routine = form.save(commit=False)
 
-            routine.save()
-            return render(request, 'home/detail.html', {'routine': routine})
-        context = {
-            "form": form,
-        }
-        return render(request, 'home/create_routine.html', context)
+        routine.save()
+        return render(request, 'home/detail.html', {'routine': routine})
+    context = {
+        "form": form,
+    }
+    return render(request, 'home/create_routine.html', context)
 
 
 def delete_routine(request, routineid):
@@ -30,61 +27,31 @@ def delete_routine(request, routineid):
 
 
 def detail(request, routineid):
-    if not request.user.is_authenticated:
-        return render(request, 'home/login.html')
-    else:
-        user = request.user
-        routine = get_object_or_404(Routine, pk=routineid)
-        return render(request, 'home/detail.html', {'routine': routine, 'user': user})
+    user = request.user
+    routine = get_object_or_404(Routine, pk=routineid)
+    return render(request, 'home/detail.html', {'routine': routine, 'user': user})
 
 
 def index(request):
-    if not request.user.is_authenticated:
-        return render(request, 'home/login.html')
-    else:
-        return render(request, 'music/index.html')
+    return render(request, 'home/index.html')
 
 
-def logout_user(request):
-    logout(request)
-    form = UserForm(request.POST or None)
-    context = {
-        "form": form,
-    }
-    return render(request, 'home/login.html', context)
+def programs(request):
+    return render(request, 'home/programs.html')
 
 
-def login_user(request):
-    if request.method == "POST":
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            if user.is_active:
-                login(request, user)
-                return render(request, 'home/index.html')
-            else:
-                return render(request, 'home/login.html', {'error_message': 'Your account has been disabled'})
-        else:
-            return render(request, 'home/login.html', {'error_message': 'Invalid login'})
-    return render(request, 'home/login.html')
+def subjects(request):
+    return render(request, 'home/subjects.html')
 
 
-def register(request):
-    form = UserForm(request.POST or None)
-    if form.is_valid():
-        user = form.save(commit=False)
-        username = form.cleaned_data['username']
-        password = form.cleaned_data['password']
-        user.set_password(password)
-        user.save()
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            if user.is_active:
-                login(request, user)
-                return render(request, 'home/index.html')
-    context = {
-        "form": form,
-    }
-    return render(request, 'home/register.html', context)
+def departments(request):
+    return render(request, 'home/departments.html')
+
+
+def teachers(request):
+    return render(request, 'home/teachers.html')
+
+
+def rooms(request):
+    return render(request, 'home/rooms.html')
 
