@@ -1,4 +1,31 @@
 {% extends 'home/base.html' %}
 {% block routine_active %}active{% endblock %}
 
-<h1>Teachers</h1>
+{% block body %}
+
+<div class="panel panel-default">
+                <div class="panel-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Department</th>
+                                <th>Teacher</th>
+                                <th>Name</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for teacher in teachers %}
+                                <tr>
+                                    <td>{{ teacher.departmentid.departmentid }}</td>
+                                    <td>{{ teacher.teacherid }}</td>
+                                    <td>{{ teacher.teachername }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+{% endblock %}

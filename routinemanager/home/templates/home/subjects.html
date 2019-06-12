@@ -1,4 +1,35 @@
 {% extends 'home/base.html' %}
 {% block routine_active %}active{% endblock %}
 
-<h1>Subjects</h1>
+{% block body %}
+
+<div class="panel panel-default">
+                <div class="panel-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Course Code</th>
+                                <th>Subject</th>
+                                <th>Department</th>
+                                <th>Year</th>
+                                <th>Part</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for subject in subjects %}
+                                <tr>
+                                    <td>{{ subject.subjectid }}</td>
+                                    <td>{{ subject.subjectname }}</td>
+                                    <td>{{ subject.departmentid.departmentid }}</td>
+                                    <td>{{ subject.tyear }}</td>
+                                    <td>{{ subject.tpart }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+{% endblock %}

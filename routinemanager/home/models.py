@@ -65,13 +65,3 @@ class Routine(models.Model):
 
     class Meta:
         db_table = 'routine'
-
-
-class Users(models.Model):
-    userid = models.IntegerField(db_column='UserID', primary_key=True, default='')  # Field name made lowercase.
-    username = models.CharField(db_column='UserName', max_length=5, blank=True, null=True)  # Field name made lowercase.
-    password = models.CharField(db_column='Password', max_length=32, blank=True, null=True)  # Field name made lowercase.
-    usertype = models.CharField(db_column='UserType', max_length=6, blank=True, null=True)  # Field name made lowercase.
-
-    class Meta:
-        db_table = 'users'

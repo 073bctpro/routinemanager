@@ -1,10 +1,10 @@
-from django.contrib.auth import authenticate, login
-from django.contrib.auth import logout
-from django.http import JsonResponse
+from django.shortcuts import render
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from .serializers import departmentsSerializer, programsSerializer, roomsSerializer, routineSerializer, subjectsSerializer, teachersSerializer
 from django.shortcuts import render, get_object_or_404
-from django.db.models import Q
 from .forms import RoutineForm, UserForm
-from .models import Programs, Rooms, Routine, Subjects, Teachers, Users
+from .models import Departments, Programs, Rooms, Routine, Subjects, Teachers
 
 
 def create_routine(request):
@@ -37,21 +37,31 @@ def index(request):
 
 
 def programs(request):
-    return render(request, 'home/programs.html')
-
+    programs = Programs.objects.all()
+    context = {'programs': programs}
+    return render(request, 'home/programs.html', context)
 
 def subjects(request):
-    return render(request, 'home/subjects.html')
+    subjects = Subjects.objects.all()
+    context = {'subjects': subjects}
+    return render(request, 'home/subjects.html', context)
 
 
 def departments(request):
-    return render(request, 'home/departments.html')
+    departments = Departments.objects.all()
+    context = {'departments': departments}
+    return render(request, 'home/departments.html', context)
 
 
 def teachers(request):
-    return render(request, 'home/teachers.html')
+    teachers = Teachers.objects.all()
+    context = {'teachers': teachers}
+    return render(request, 'home/teachers.html', context)
 
 
 def rooms(request):
-    return render(request, 'home/rooms.html')
+    rooms = Rooms.objects.all()
+    context = {'rooms': rooms}
+    return render(request, 'home/rooms.html', context)
+
 
